@@ -12,7 +12,6 @@ class GamesController < ApplicationController
     @ref_word = params[:ref_word]
     @answer = params[:result]
     ref_string = @ref_word.gsub(/[[:space:]]/, '')
-    # The word can’t be built out of the original grid
     if !letters_in_grid?
       @result = "Sorry, but #{@answer.upcase} can’t be built out of #{ref_string}."
     elsif !find_english_word
@@ -22,8 +21,7 @@ class GamesController < ApplicationController
     else letters_in_grid? && !find_english_word
       @result = "Youpi, #{@answer.upcase} is a valid word."
     end
-    # The word is valid according to the grid, but is not a valid English word
-    # # The word is valid according to the grid and is an English word
+
   end
 
   def find_english_word
